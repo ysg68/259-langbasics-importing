@@ -1320,7 +1320,7 @@ ds_all &lt;- read_csv(full_file_names)
 &lt;style&gt;
 .panel1-import_multiple-auto {
   color: black;
-  width: 65.3333333333333%;
+  width: 58.8%;
   hight: 32%;
   float: left;
   padding-left: 1%;
@@ -1328,7 +1328,7 @@ ds_all &lt;- read_csv(full_file_names)
 }
 .panel2-import_multiple-auto {
   color: black;
-  width: 32.6666666666667%;
+  width: 39.2%;
   hight: 32%;
   float: left;
   padding-left: 1%;
@@ -1351,20 +1351,363 @@ ds_all &lt;- read_csv(full_file_names)
 
 # What's a tibble? 
 
-- BLAH BLAH BLAH
+- Tibbles are the tidyverse equivalent of base R data frames. 
+
+- A tibble/data frame is a rectangular data spreadsheet, with columns of variables and rows of observations
+
+- Tibbles/data frames will always appear in the "Data" section of the RStudio environment
+
+- If you click on the blue "play" button on a tibble in your RStudio environment, you can view a tibble
+
+- Unlike in Excel, you cannot edit the values. This is a feature, not a bug!
+
+- `ds$variable` lets you access one variable of a data set
 
 ---
 
 # Why did we need full.names? 
 
-- Our working directory is `/Users/johnfranchak/Documents/GitHub-259-2022/259-langbasics-importing`
+- Our working directory is:
 
-- Our data is in a subdirectory `data_raw`
+`/Users/johnfranchak/Documents/GitHub-259-2022/259-langbasics-importing`
 
-- `dir('data_raw')` gives "vocab12.csv", "vocab12.5.csv"...
+- Our data is in a subdirectory `/data_raw`
+
+- `dir('data_raw')` gives `vocab12.csv`, `vocab12.5.csv`...which aren't in the working directory
 
 - `dir('data_raw', full.names = TRUE)` gives the absolute path:
-"/Users/johnfranchak/Documents/GitHub-259-2022/259-langbasics-importing/data_raw/vocab12.csv"
+
+`/Users/johnfranchak/Documents/GitHub-259-2022/259-langbasics-importing/data_raw/vocab12.csv`
+
+---
+
+count: false
+ 
+
+.panel1-tibble-auto[
+
+```r
+# Find the minimum and maximum ages
+*min(ds_all$age)
+```
+]
+ 
+.panel2-tibble-auto[
+
+```
+[1] 12
+```
+]
+
+---
+count: false
+ 
+
+.panel1-tibble-auto[
+
+```r
+# Find the minimum and maximum ages
+min(ds_all$age)
+*max(ds_all$age)
+```
+]
+ 
+.panel2-tibble-auto[
+
+```
+[1] 12
+```
+
+```
+[1] 24
+```
+]
+
+---
+count: false
+ 
+
+.panel1-tibble-auto[
+
+```r
+# Find the minimum and maximum ages
+min(ds_all$age)
+max(ds_all$age)
+
+# Create a new column in a dataset
+*ds_all$ppt_name &lt;- "Jonah"
+```
+]
+ 
+.panel2-tibble-auto[
+
+```
+[1] 12
+```
+
+```
+[1] 24
+```
+]
+
+---
+count: false
+ 
+
+.panel1-tibble-auto[
+
+```r
+# Find the minimum and maximum ages
+min(ds_all$age)
+max(ds_all$age)
+
+# Create a new column in a dataset
+ds_all$ppt_name &lt;- "Jonah"
+*print(ds_all)
+```
+]
+ 
+.panel2-tibble-auto[
+
+```
+[1] 12
+```
+
+```
+[1] 24
+```
+
+```
+# A tibble: 440 × 3
+     age word         ppt_name
+   &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;   
+ 1  12.5 dad          Jonah   
+ 2  12   book         Jonah   
+ 3  12   ball         Jonah   
+ 4  12   bye bye      Jonah   
+ 5  13.5 cat          Jonah   
+ 6  14.5 socks/shoes  Jonah   
+ 7  14.5 dog (animal) Jonah   
+ 8  14   baby         Jonah   
+ 9  15.5 cheese       Jonah   
+10  15.5 turkey       Jonah   
+# … with 430 more rows
+```
+]
+
+---
+count: false
+ 
+
+.panel1-tibble-auto[
+
+```r
+# Find the minimum and maximum ages
+min(ds_all$age)
+max(ds_all$age)
+
+# Create a new column in a dataset
+ds_all$ppt_name &lt;- "Jonah"
+print(ds_all)
+
+# Create a calculated column
+*ds_all$age_round &lt;- round(ds_all$age)
+```
+]
+ 
+.panel2-tibble-auto[
+
+```
+[1] 12
+```
+
+```
+[1] 24
+```
+
+```
+# A tibble: 440 × 3
+     age word         ppt_name
+   &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;   
+ 1  12.5 dad          Jonah   
+ 2  12   book         Jonah   
+ 3  12   ball         Jonah   
+ 4  12   bye bye      Jonah   
+ 5  13.5 cat          Jonah   
+ 6  14.5 socks/shoes  Jonah   
+ 7  14.5 dog (animal) Jonah   
+ 8  14   baby         Jonah   
+ 9  15.5 cheese       Jonah   
+10  15.5 turkey       Jonah   
+# … with 430 more rows
+```
+]
+
+---
+count: false
+ 
+
+.panel1-tibble-auto[
+
+```r
+# Find the minimum and maximum ages
+min(ds_all$age)
+max(ds_all$age)
+
+# Create a new column in a dataset
+ds_all$ppt_name &lt;- "Jonah"
+print(ds_all)
+
+# Create a calculated column
+ds_all$age_round &lt;- round(ds_all$age)
+*print(ds_all)
+```
+]
+ 
+.panel2-tibble-auto[
+
+```
+[1] 12
+```
+
+```
+[1] 24
+```
+
+```
+# A tibble: 440 × 4
+     age word         ppt_name age_round
+   &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;        &lt;dbl&gt;
+ 1  12.5 dad          Jonah           12
+ 2  12   book         Jonah           12
+ 3  12   ball         Jonah           12
+ 4  12   bye bye      Jonah           12
+ 5  13.5 cat          Jonah           14
+ 6  14.5 socks/shoes  Jonah           14
+ 7  14.5 dog (animal) Jonah           14
+ 8  14   baby         Jonah           14
+ 9  15.5 cheese       Jonah           16
+10  15.5 turkey       Jonah           16
+# … with 430 more rows
+```
+
+```
+# A tibble: 440 × 4
+     age word         ppt_name age_round
+   &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;        &lt;dbl&gt;
+ 1  12.5 dad          Jonah           12
+ 2  12   book         Jonah           12
+ 3  12   ball         Jonah           12
+ 4  12   bye bye      Jonah           12
+ 5  13.5 cat          Jonah           14
+ 6  14.5 socks/shoes  Jonah           14
+ 7  14.5 dog (animal) Jonah           14
+ 8  14   baby         Jonah           14
+ 9  15.5 cheese       Jonah           16
+10  15.5 turkey       Jonah           16
+# … with 430 more rows
+```
+]
+
+---
+count: false
+ 
+
+.panel1-tibble-auto[
+
+```r
+# Find the minimum and maximum ages
+min(ds_all$age)
+max(ds_all$age)
+
+# Create a new column in a dataset
+ds_all$ppt_name &lt;- "Jonah"
+print(ds_all)
+
+# Create a calculated column
+ds_all$age_round &lt;- round(ds_all$age)
+print(ds_all)
+
+# Let's write the combined data to disk
+*write_csv(ds_all, file = "data_cleaned/vocab_combined.csv")
+```
+]
+ 
+.panel2-tibble-auto[
+
+```
+[1] 12
+```
+
+```
+[1] 24
+```
+
+```
+# A tibble: 440 × 4
+     age word         ppt_name age_round
+   &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;        &lt;dbl&gt;
+ 1  12.5 dad          Jonah           12
+ 2  12   book         Jonah           12
+ 3  12   ball         Jonah           12
+ 4  12   bye bye      Jonah           12
+ 5  13.5 cat          Jonah           14
+ 6  14.5 socks/shoes  Jonah           14
+ 7  14.5 dog (animal) Jonah           14
+ 8  14   baby         Jonah           14
+ 9  15.5 cheese       Jonah           16
+10  15.5 turkey       Jonah           16
+# … with 430 more rows
+```
+
+```
+# A tibble: 440 × 4
+     age word         ppt_name age_round
+   &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;        &lt;dbl&gt;
+ 1  12.5 dad          Jonah           12
+ 2  12   book         Jonah           12
+ 3  12   ball         Jonah           12
+ 4  12   bye bye      Jonah           12
+ 5  13.5 cat          Jonah           14
+ 6  14.5 socks/shoes  Jonah           14
+ 7  14.5 dog (animal) Jonah           14
+ 8  14   baby         Jonah           14
+ 9  15.5 cheese       Jonah           16
+10  15.5 turkey       Jonah           16
+# … with 430 more rows
+```
+]
+
+&lt;style&gt;
+.panel1-tibble-auto {
+  color: black;
+  width: 58.8%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-tibble-auto {
+  color: black;
+  width: 39.2%;
+  hight: 32%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-tibble-auto {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: left;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+
 
 
 &lt;!-- adjust font size in this css code chunk, currently 80 --&gt;
