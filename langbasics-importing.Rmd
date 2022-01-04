@@ -101,6 +101,14 @@ my_vars
 # RStudio has built-in help for every function
 ?c
 
+# Base R refers to the collection of default functions
+# When we want to use functions to expand R, we
+# need to use libary to load packages
+
+library(readr)
+
+
+
 ```
 ---
 class: inverse, center, middle
