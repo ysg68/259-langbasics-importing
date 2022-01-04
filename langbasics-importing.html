@@ -1709,6 +1709,19 @@ print(ds_all)
 
 
 
+---
+
+# Useful readr capabilities
+
+- read_csv(), read_tsv(), read_delim() are tailored to different inputs (also write_csv(), write_tsv(), write_delim() for saving data)
+
+- Important read_*() arguments are:
+  * col_names = TRUE (reads column names from first line by default)
+  * col_names = FALSE (treats the first line as data)
+  * col_names = c("col1name", "col2name") ... to specify the names
+  * col_types = NULL (by default, detects the data type)
+  * col_types = "ccDin" (specify types character/date/integer/number)
+  * skip = 10 (skip the first 10 lines)
 
 &lt;!-- adjust font size in this css code chunk, currently 80 --&gt;
 
