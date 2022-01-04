@@ -218,7 +218,7 @@ write_csv(ds_all, file = "data_cleaned/vocab_combined.csv")
 ```{r read_options, include = FALSE}
 f <- "data_cleaned/vocab_combined.csv"
 n <- c("AGE", "WORD", "NAME", "MONTH")
-t <- "iccd"
+t <- "cccc"
 ds <- read_csv(file = f) #ROTATE
 ds <- read_csv(file = f, col_names = F) #ROTATE
 ds <- read_csv(file = f, col_names = n) #ROTATE
@@ -226,6 +226,28 @@ ds <- read_csv(file = f, col_names = n, skip = 1) #ROTATE
 ds <- read_csv(file = f, col_names = n, col_types = t, skip = 1) #ROTATE
 print(ds)
 ```
+
+---
+# More options
+
+- tidyverse data import cheatsheet
+
+- ?read_csv, ?write_csv
+
+- specialized import packages
+  * haven for SPSS/Stata/SAS
+  * readxl for .xlsx
+  * googlesheets4 for Google sheets
+
+---
+class: center, middle
+background-image: url("readr-cheatsheet1.png")
+background-size: contain
+
+---
+class: center, middle
+background-image: url("readr-cheatsheet2.png")
+background-size: contain
 
 <!-- adjust font size in this css code chunk, currently 80 -->
 

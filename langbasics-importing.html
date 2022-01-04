@@ -1733,7 +1733,7 @@ count: false
 ```r
 f &lt;- "data_cleaned/vocab_combined.csv"
 n &lt;- c("AGE", "WORD", "NAME", "MONTH")
-t &lt;- "iccd"
+t &lt;- "cccc"
 *ds &lt;- read_csv(file = f)
 print(ds)
 ```
@@ -1768,7 +1768,7 @@ count: false
 ```r
 f &lt;- "data_cleaned/vocab_combined.csv"
 n &lt;- c("AGE", "WORD", "NAME", "MONTH")
-t &lt;- "iccd"
+t &lt;- "cccc"
 *ds &lt;- read_csv(file = f, col_names = F)
 print(ds)
 ```
@@ -1803,7 +1803,42 @@ count: false
 ```r
 f &lt;- "data_cleaned/vocab_combined.csv"
 n &lt;- c("AGE", "WORD", "NAME", "MONTH")
-t &lt;- "iccd"
+t &lt;- "cccc"
+*ds &lt;- read_csv(file = f, col_names = n)
+print(ds)
+```
+]
+ 
+.panel2-read_options-rotate[
+
+```
+# A tibble: 441 × 4
+   AGE   WORD         NAME     MONTH    
+   &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;    
+ 1 age   word         ppt_name age_round
+ 2 12.5  dad          Jonah    12       
+ 3 12    book         Jonah    12       
+ 4 12    ball         Jonah    12       
+ 5 12    bye bye      Jonah    12       
+ 6 13.5  cat          Jonah    14       
+ 7 14.5  socks/shoes  Jonah    14       
+ 8 14.5  dog (animal) Jonah    14       
+ 9 14    baby         Jonah    14       
+10 15.5  cheese       Jonah    16       
+# … with 431 more rows
+```
+]
+
+---
+count: false
+ 
+
+.panel1-read_options-rotate[
+
+```r
+f &lt;- "data_cleaned/vocab_combined.csv"
+n &lt;- c("AGE", "WORD", "NAME", "MONTH")
+t &lt;- "cccc"
 *ds &lt;- read_csv(file = f, col_names = n, skip = 1)
 print(ds)
 ```
@@ -1838,7 +1873,7 @@ count: false
 ```r
 f &lt;- "data_cleaned/vocab_combined.csv"
 n &lt;- c("AGE", "WORD", "NAME", "MONTH")
-t &lt;- "iccd"
+t &lt;- "cccc"
 *ds &lt;- read_csv(file = f, col_names = n, col_types = t, skip = 1)
 print(ds)
 ```
@@ -1848,18 +1883,18 @@ print(ds)
 
 ```
 # A tibble: 440 × 4
-     AGE WORD         NAME  MONTH
-   &lt;int&gt; &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt;
- 1    NA dad          Jonah    12
- 2    12 book         Jonah    12
- 3    12 ball         Jonah    12
- 4    12 bye bye      Jonah    12
- 5    NA cat          Jonah    14
- 6    NA socks/shoes  Jonah    14
- 7    NA dog (animal) Jonah    14
- 8    14 baby         Jonah    14
- 9    NA cheese       Jonah    16
-10    NA turkey       Jonah    16
+   AGE   WORD         NAME  MONTH
+   &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt; &lt;chr&gt;
+ 1 12.5  dad          Jonah 12   
+ 2 12    book         Jonah 12   
+ 3 12    ball         Jonah 12   
+ 4 12    bye bye      Jonah 12   
+ 5 13.5  cat          Jonah 14   
+ 6 14.5  socks/shoes  Jonah 14   
+ 7 14.5  dog (animal) Jonah 14   
+ 8 14    baby         Jonah 14   
+ 9 15.5  cheese       Jonah 16   
+10 15.5  turkey       Jonah 16   
 # … with 430 more rows
 ```
 ]
@@ -1894,6 +1929,28 @@ print(ds)
 
 
 
+
+---
+# More options
+
+- tidyverse data import cheatsheet
+
+- ?read_csv, ?write_csv
+
+- specialized import packages
+  * haven for SPSS/Stata/SAS
+  * readxl for .xlsx
+  * googlesheets4 for Google sheets
+
+---
+class: center, middle
+background-image: url("readr-cheatsheet1.png")
+background-size: contain
+
+---
+class: center, middle
+background-image: url("readr-cheatsheet2.png")
+background-size: contain
 
 &lt;!-- adjust font size in this css code chunk, currently 80 --&gt;
 
