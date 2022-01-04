@@ -101,14 +101,16 @@ my_vars
 # RStudio has built-in help for every function
 ?c
 
+ds <- read.csv('data_raw/vocab12.5.csv')
+print(ds)
+
 # Base R refers to the collection of default functions
 # When we want to use functions to expand R, we
 # need to use libary to load packages
 
-library(readr)
+library(readr) #for read_csv
 
-
-
+ds <- read_csv('data_raw/vocab12.5.csv')
 ```
 ---
 class: inverse, center, middle

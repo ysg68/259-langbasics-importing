@@ -689,50 +689,6 @@ my_vars &lt;- c(var1, var2, var3)
 my_vars
 
 # RStudio has built-in help for every function
-*# Use ? followed by a function name to get help  # Use ? followed by a function name to get help
-```
-]
- 
-.panel2-functions-auto[
-
-```
-[1] 1
-```
-
-```
-[1] 5
-```
-
-```
-[1] 30
-```
-
-```
-[1]  5 10 15
-```
-]
-
----
-count: false
- 
-
-.panel1-functions-auto[
-
-```r
-# Print and rm are functions that we use in R
-# We call functions by writing their name followed
-# by a list of arguments in parentheses
-
-abs(-1)
-mean(var1, var2)
-sum(var1, var2, var3)
-
-# c is a function that combines values together
-my_vars &lt;- c(var1, var2, var3)
-my_vars
-
-# RStudio has built-in help for every function
-# Use ? followed by a function name to get help  # Use ? followed by a function name to get help
 *?c
 ```
 ]
@@ -776,8 +732,9 @@ my_vars &lt;- c(var1, var2, var3)
 my_vars
 
 # RStudio has built-in help for every function
-# Use ? followed by a function name to get help  # Use ? followed by a function name to get help
 ?c
+
+*ds &lt;- read.csv('data_raw/vocab12.5.csv')
 ```
 ]
  
@@ -797,6 +754,114 @@ my_vars
 
 ```
 [1]  5 10 15
+```
+]
+
+---
+count: false
+ 
+
+.panel1-functions-auto[
+
+```r
+# Print and rm are functions that we use in R
+# We call functions by writing their name followed
+# by a list of arguments in parentheses
+
+abs(-1)
+mean(var1, var2)
+sum(var1, var2, var3)
+
+# c is a function that combines values together
+my_vars &lt;- c(var1, var2, var3)
+my_vars
+
+# RStudio has built-in help for every function
+?c
+
+ds &lt;- read.csv('data_raw/vocab12.5.csv')
+*print(ds)
+```
+]
+ 
+.panel2-functions-auto[
+
+```
+[1] 1
+```
+
+```
+[1] 5
+```
+
+```
+[1] 30
+```
+
+```
+[1]  5 10 15
+```
+
+```
+   age word
+1 12.5  dad
+```
+]
+
+---
+count: false
+ 
+
+.panel1-functions-auto[
+
+```r
+# Print and rm are functions that we use in R
+# We call functions by writing their name followed
+# by a list of arguments in parentheses
+
+abs(-1)
+mean(var1, var2)
+sum(var1, var2, var3)
+
+# c is a function that combines values together
+my_vars &lt;- c(var1, var2, var3)
+my_vars
+
+# RStudio has built-in help for every function
+?c
+
+ds &lt;- read.csv('data_raw/vocab12.5.csv')
+print(ds)
+
+# Base R refers to the collection of default functions
+# When we want to use functions to expand R, we
+# need to use libary to load packages
+
+*library(readr)  #for read_csv
+```
+]
+ 
+.panel2-functions-auto[
+
+```
+[1] 1
+```
+
+```
+[1] 5
+```
+
+```
+[1] 30
+```
+
+```
+[1]  5 10 15
+```
+
+```
+   age word
+1 12.5  dad
 ```
 ]
 
