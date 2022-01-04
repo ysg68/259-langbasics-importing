@@ -1716,12 +1716,184 @@ print(ds_all)
 - read_csv(), read_tsv(), read_delim() are tailored to different inputs (also write_csv(), write_tsv(), write_delim() for saving data)
 
 - Important read_*() arguments are:
-  * col_names = TRUE (reads column names from first line by default)
-  * col_names = FALSE (treats the first line as data)
-  * col_names = c("col1name", "col2name") ... to specify the names
-  * col_types = NULL (by default, detects the data type)
-  * col_types = "ccDin" (specify types character/date/integer/number)
-  * skip = 10 (skip the first 10 lines)
+  * `col_names = TRUE` (reads column names from first line by default)
+  * `col_names = FALSE` (treats the first line as data)
+  * `col_names = c("col1name", "col2name")` (to specify the names)
+  * `col_types = NULL` (by default, guesses the data type)
+  * `col_types = "ccDin"` (specify types character/date/integer/number)
+  * `skip = 10` (skip the first 10 lines)
+
+---
+
+count: false
+ 
+
+.panel1-read_options-rotate[
+
+```r
+f &lt;- "data_cleaned/vocab_combined.csv"
+n &lt;- c("AGE", "WORD", "NAME", "MONTH")
+t &lt;- "iccd"
+*ds &lt;- read_csv(file = f)
+print(ds)
+```
+]
+ 
+.panel2-read_options-rotate[
+
+```
+# A tibble: 440 × 4
+     age word         ppt_name age_round
+   &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;        &lt;dbl&gt;
+ 1  12.5 dad          Jonah           12
+ 2  12   book         Jonah           12
+ 3  12   ball         Jonah           12
+ 4  12   bye bye      Jonah           12
+ 5  13.5 cat          Jonah           14
+ 6  14.5 socks/shoes  Jonah           14
+ 7  14.5 dog (animal) Jonah           14
+ 8  14   baby         Jonah           14
+ 9  15.5 cheese       Jonah           16
+10  15.5 turkey       Jonah           16
+# … with 430 more rows
+```
+]
+
+---
+count: false
+ 
+
+.panel1-read_options-rotate[
+
+```r
+f &lt;- "data_cleaned/vocab_combined.csv"
+n &lt;- c("AGE", "WORD", "NAME", "MONTH")
+t &lt;- "iccd"
+*ds &lt;- read_csv(file = f, col_names = F)
+print(ds)
+```
+]
+ 
+.panel2-read_options-rotate[
+
+```
+# A tibble: 441 × 4
+   X1    X2           X3       X4       
+   &lt;chr&gt; &lt;chr&gt;        &lt;chr&gt;    &lt;chr&gt;    
+ 1 age   word         ppt_name age_round
+ 2 12.5  dad          Jonah    12       
+ 3 12    book         Jonah    12       
+ 4 12    ball         Jonah    12       
+ 5 12    bye bye      Jonah    12       
+ 6 13.5  cat          Jonah    14       
+ 7 14.5  socks/shoes  Jonah    14       
+ 8 14.5  dog (animal) Jonah    14       
+ 9 14    baby         Jonah    14       
+10 15.5  cheese       Jonah    16       
+# … with 431 more rows
+```
+]
+
+---
+count: false
+ 
+
+.panel1-read_options-rotate[
+
+```r
+f &lt;- "data_cleaned/vocab_combined.csv"
+n &lt;- c("AGE", "WORD", "NAME", "MONTH")
+t &lt;- "iccd"
+*ds &lt;- read_csv(file = f, col_names = n, skip = 1)
+print(ds)
+```
+]
+ 
+.panel2-read_options-rotate[
+
+```
+# A tibble: 440 × 4
+     AGE WORD         NAME  MONTH
+   &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt;
+ 1  12.5 dad          Jonah    12
+ 2  12   book         Jonah    12
+ 3  12   ball         Jonah    12
+ 4  12   bye bye      Jonah    12
+ 5  13.5 cat          Jonah    14
+ 6  14.5 socks/shoes  Jonah    14
+ 7  14.5 dog (animal) Jonah    14
+ 8  14   baby         Jonah    14
+ 9  15.5 cheese       Jonah    16
+10  15.5 turkey       Jonah    16
+# … with 430 more rows
+```
+]
+
+---
+count: false
+ 
+
+.panel1-read_options-rotate[
+
+```r
+f &lt;- "data_cleaned/vocab_combined.csv"
+n &lt;- c("AGE", "WORD", "NAME", "MONTH")
+t &lt;- "iccd"
+*ds &lt;- read_csv(file = f, col_names = n, col_types = t, skip = 1)
+print(ds)
+```
+]
+ 
+.panel2-read_options-rotate[
+
+```
+# A tibble: 440 × 4
+     AGE WORD         NAME  MONTH
+   &lt;int&gt; &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt;
+ 1    NA dad          Jonah    12
+ 2    12 book         Jonah    12
+ 3    12 ball         Jonah    12
+ 4    12 bye bye      Jonah    12
+ 5    NA cat          Jonah    14
+ 6    NA socks/shoes  Jonah    14
+ 7    NA dog (animal) Jonah    14
+ 8    14 baby         Jonah    14
+ 9    NA cheese       Jonah    16
+10    NA turkey       Jonah    16
+# … with 430 more rows
+```
+]
+
+&lt;style&gt;
+.panel1-read_options-rotate {
+  color: black;
+  width: 81.6666666666667%;
+  hight: 32%;
+  float: none;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel2-read_options-rotate {
+  color: black;
+  width: 16.3333333333333%;
+  hight: 32%;
+  float: none;
+  padding-left: 1%;
+  font-size: 80%
+}
+.panel3-read_options-rotate {
+  color: black;
+  width: NA%;
+  hight: 33%;
+  float: none;
+  padding-left: 1%;
+  font-size: 80%
+}
+&lt;/style&gt;
+
+
+
+
 
 &lt;!-- adjust font size in this css code chunk, currently 80 --&gt;
 

@@ -204,12 +204,28 @@ write_csv(ds_all, file = "data_cleaned/vocab_combined.csv")
 - read_csv(), read_tsv(), read_delim() are tailored to different inputs (also write_csv(), write_tsv(), write_delim() for saving data)
 
 - Important read_*() arguments are:
-  * col_names = TRUE (reads column names from first line by default)
-  * col_names = FALSE (treats the first line as data)
-  * col_names = c("col1name", "col2name") ... to specify the names
-  * col_types = NULL (by default, detects the data type)
-  * col_types = "ccDin" (specify types character/date/integer/number)
-  * skip = 10 (skip the first 10 lines)
+  * `col_names = TRUE` (reads column names from first line by default)
+  * `col_names = FALSE` (treats the first line as data)
+  * `col_names = c("col1name", "col2name")` (to specify the names)
+  * `col_types = NULL` (by default, guesses the data type)
+  * `col_types = "ccDin"` (specify types character/date/integer/number)
+  * `skip = 10` (skip the first 10 lines)
+
+---
+
+`r chunk_reveal("read_options", break_type = "rotate", float = "none", widths = c(5, 1))`
+
+```{r read_options, include = FALSE}
+f <- "data_cleaned/vocab_combined.csv"
+n <- c("AGE", "WORD", "NAME", "MONTH")
+t <- "iccd"
+ds <- read_csv(file = f) #ROTATE
+ds <- read_csv(file = f, col_names = F) #ROTATE
+ds <- read_csv(file = f, col_names = n) #ROTATE
+ds <- read_csv(file = f, col_names = n, skip = 1) #ROTATE
+ds <- read_csv(file = f, col_names = n, col_types = t, skip = 1) #ROTATE
+print(ds)
+```
 
 <!-- adjust font size in this css code chunk, currently 80 -->
 
