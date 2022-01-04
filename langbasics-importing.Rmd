@@ -49,6 +49,7 @@ library(tidyverse)
 
 
 ---
+
 `r chunk_reveal("calc_vs_assign", break_type = "auto", widths = c(4, 1))`
 
 ```{r calc_vs_assign, include = FALSE}
@@ -101,7 +102,7 @@ my_vars
 # RStudio has built-in help for every function
 ?c
 
-ds <- read.csv('data_raw/vocab12.5.csv')
+ds <- read.csv('data_raw/vocab16.csv')
 print(ds)
 
 # Base R refers to the collection of default functions
@@ -109,79 +110,86 @@ print(ds)
 # need to use libary to load packages
 
 library(readr) #for read_csv
-
-ds <- read_csv('data_raw/vocab12.5.csv')
+ds <- read_csv('data_raw/vocab16.csv')
 ```
 ---
-class: inverse, center, middle
 
-# Next up:  cycle through different lines of code
+# read_csv versus read.csv
 
+- read.csv is base R, read_csv is tidyverse
 
+- read_csv is faster
 
+- read_csv makes fewer assumptions about your data
 
+- read_csv can combine multiple data files into one
 
-<!-- get flipbook that rotates through lines, my_fill -->
 ---
 
-`r chunk_reveal("my_fill", break_type = "rotate", widths = c(1,1), title = "### cycle through lines of code marked #ROTATE")`
+`r chunk_reveal("import_multiple", break_type = "auto", widths = c(2, 1))`
 
-```{r my_fill, eval = F, echo = F}
-ggplot(data = cars) +
-  aes(x = speed) +
-  aes(y = dist) +
-  geom_point(size = 8,
-             shape = 21,
-             alpha = .9,
-             color = "snow") +
-  aes(fill = speed) +
-  scale_fill_viridis_c(option = "magma") + #ROTATE
-  scale_fill_viridis_c(option = "cividis") + #ROTATE
-  scale_fill_viridis_c(option = "plasma") #ROTATE
+```{r import_multiple, include = FALSE}
+# Each file contains data for 2-week intervals
+dir('data_raw') #function for listing a directory
+
+# This is slow and tedious!
+ds12 <- read_csv('data_raw/vocab12.csv')
+ds12.5 <- read_csv('data_raw/vocab12.5.csv')
+ds13.5 <- read_csv('data_raw/vocab13.5.csv')
+ds_all <- bind_rows(ds12, ds12.5, ds13.5)
+print(ds_all)
+
+# read_csv can read a list of files!
+full_file_names <- dir('data_raw', full.names = TRUE)
+ds_all <- read_csv(full_file_names)
+print(ds_all)
 ```
-
-
----
-class: inverse, center, middle
-
-# Next up:  look at multiple realizations of same code
-
-
-
-
-
-<!-- get flipbook that shows multiple realizations of the same code -->
 ---
 
-`r chunk_reveal("cars_multi", break_type = 5, title = "### see multiple realizations of code")`
+# What's a tibble? 
 
-```{r cars_multi, include = FALSE}
-cars %>% 
-  sample_frac(size = 1, replace = TRUE) %>%      
-  ggplot() +              
-  aes(x = speed) +
-  aes(y = dist) +
-  geom_count(
-    alpha = .7,
-    color = "blue",
-    size = 4
-    ) + 
-  geom_smooth(method = lm, se = FALSE) +
-  coord_cartesian(xlim = range(cars$speed),
-                  ylim = range(cars$dist)) +
-  theme(legend.position = c(.9, .2))
+- Tibbles are the tidyverse equivalent of base R data frames. I use the terms interchangeably. 
+
+- A tibble/data frame is a rectangular data spreadsheet, with columns of variables and rows of observations
+
+- Tibbles/data frames will always appear in the "Data" section of the RStudio environment
+
+- If you click on the blue "play" button on a tibble in your RStudio environment, you can view a tibble
+
+- Unlike in Excel/SPSS, you cannot edit the values. This is a feature, not a bug!
+
+- ds$variable lets you access one variable of a data set
+
+---
+
+# Why did we need full.names? 
+
+- Our working directory is `/Users/johnfranchak/Documents/GitHub-259-2022/259-langbasics-importing`
+
+- Our data is in a subdirectory `/data_raw`
+
+- `dir('data_raw')` gives "vocab12.csv", "vocab12.5.csv"...which aren't in the working directory
+
+- `dir('data_raw', full.names = TRUE)` gives the absolute path:
+"/Users/johnfranchak/Documents/GitHub-259-2022/259-langbasics-importing/data_raw/vocab12.csv"
+
+---
+
+`r chunk_reveal("tibble", break_type = "auto", widths = c(2, 1))`
+
+```{r tibble, include = FALSE}
+# Find the minimum and maximum ages
+min(ds_all$age)
+max(ds_all$age)
+
+# Create a new column in a dataset
+ds_all$ppt_name <- "Jonah"
+ds_all$age_round <- round(ds_all$age)
+print(ds_all)
+
+
+
 ```
-
-
----
-
-`r chunk_reveal("test", left_assign = "detect")`
-
-```{r test, include=FALSE}
-# hello
-jam <- "hi"
-```
-
 
 
 <!-- adjust font size in this css code chunk, currently 80 -->
@@ -200,16 +208,10 @@ code.r.hljs.remark-code{
   overflow-x: hidden;
 }
 
+.remark-slide-number {
+  opacity: 0; /* default: 0.5 */
+}
+
 }
 ```
-
-
-
----
-
-# Notes: 
-
-- This minimal flipbook assumes you are online when you build and view.  It is going to find the most recent remark.js info online.
-
-- xaringan/remark.js slideshows are not self contained, single file slide shows.  Make sure you ship all the associated files that are created to display your flipbooks/slideshows.  I like to push .html and associated files to github repository and use Github Pages to host for beyond local sharing. :-)
 
