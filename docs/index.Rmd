@@ -49,7 +49,9 @@ library(tidyverse)
  
 - Extending the R language with packages 
 
+Follow along from the [Github repo](https://github.com/psych-259-data-science-2022/259-langbasics-importing)
 
+.footnote[.red.bold[*] Last updated: `r Sys.Date()`]
 ---
 
 `r chunk_reveal("calc_vs_assign", break_type = "auto", widths = c(4, 1))`
