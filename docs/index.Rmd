@@ -12,6 +12,9 @@ output:
       highlightLines: true
       countIncrementalSlides: false
 ---
+```{r xaringanExtra, echo=FALSE}
+xaringanExtra::use_xaringan_extra(c("tile_view","broadcast"))
+```
 
 ```{r xaringan-themer, include=FALSE, warning=FALSE}
 # Set up custom theme
@@ -35,6 +38,7 @@ style_mono_accent(
 knitr::opts_chunk$set(fig.width = 6, message = FALSE, warning = FALSE, comment = "", cache = F)
 library(flipbookr)
 library(tidyverse)
+#devtools::install_github("gadenbuie/xaringanExtra")
 #remotes::install_github("mitchelloharawild/icons")
 library(icons) #https://fontawesome.com/v5.15/icons?d=gallery&p=2&m=free
 ```
