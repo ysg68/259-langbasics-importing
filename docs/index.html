@@ -1355,7 +1355,8 @@ ds_all &lt;- read_csv(full_file_names)
 
 ---
 
-# Why did we need the full.names argument? 
+# Why did we need full.names? 
+--
 
 - Our working directory is:
 
@@ -1363,12 +1364,20 @@ ds_all &lt;- read_csv(full_file_names)
 
 - Our data is in a subdirectory `/data_raw`
 
+---
+
+# Why did we need full.names? 
+.pull-left[
 - `dir('data_raw')` gives `vocab12.csv`, `vocab12.5.csv`...which aren't in the working directory
 
 - `dir('data_raw', full.names = TRUE)` gives the absolute path:
 
 `/Users/johnfranchak/Documents/GitHub-259-2022/259-langbasics-importing/data_raw/vocab12.csv`
+]
 
+.pull-right[
+![an image](dir.png)
+]
 ---
 
 # What's a tibble? 
