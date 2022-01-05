@@ -35,6 +35,7 @@ style_mono_accent(
 knitr::opts_chunk$set(fig.width = 6, message = FALSE, warning = FALSE, comment = "", cache = F)
 library(flipbookr)
 library(tidyverse)
+library(icons)
 ```
 
 
@@ -50,7 +51,7 @@ library(tidyverse)
 - Extending the R language with packages 
 
 .content-box-blue[
-Follow along from the [Github repo](https://github.com/psych-259-data-science-2022/259-langbasics-importing)
+`r icons::fontawesome("github")` Follow along from the [Github repo](https://github.com/psych-259-data-science-2022/259-langbasics-importing)
 ]
 
   .footnote[.red.bold[*] Last updated: `r Sys.Date()`]
