@@ -18,6 +18,7 @@ two
 # Variables can be removed from the workspace with rm
 # After removing two, calling it again would lead to an error 
 rm(two)
+two
 
 # Variables can be reused in expressions to calculate new variables/outputs
 var1 <- 5
@@ -91,12 +92,17 @@ print(ds_all)
 write_csv(ds_all, file = "data_cleaned/vocab_combined.csv")
 
 ##### USING READ_CSV OPTIONS ----- 
+
+# Set up some variables to use in the read_csv options
 fname <- "data_cleaned/vocab_combined.csv"
 colname <- c("AGE", "WORD", "NAME", "MONTH")
 coltypes <- "cccc"
-ds <- read_csv(file = fname) #ROTATE
+
+# Read the file using different options
+# Use the RStudio data viewer to see the changes each time
+ds <- read_csv(file = fname) 
 ds <- read_csv(file = fname, col_names = FALSE)
 ds <- read_csv(file = fname, col_names = colname) 
 ds <- read_csv(file = fname, col_names = colname, skip = 1) 
 ds <- read_csv(file = fname, col_names = colname, col_types = coltypes, skip = 1) 
-print(ds)
+
