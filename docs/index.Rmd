@@ -79,7 +79,6 @@ var3 <- var1 + var2
 
 # When assigning variables, nothing prints to the console 
 # Let's use the function print
-
 print(var3)
 ```
 ---
@@ -102,12 +101,13 @@ my_vars
 # RStudio has built-in help for every function
 ?c
 
+# Functions can also be used to import data
 ds <- read.csv('data_raw/vocab16.csv')
 print(ds)
 
-# Base R refers to the collection of default functions
+# read.csv is part of base R, the default fx set
 # When we want to use functions to expand R, we
-# need to use libary to load packages
+# need to use library fx to load packages
 
 library(readr) #for read_csv
 ds <- read_csv('data_raw/vocab16.csv')
@@ -146,6 +146,22 @@ print(ds_all)
 ```
 ---
 
+# Why did we need the full.names argument? 
+
+- Our working directory is:
+
+`/Users/johnfranchak/Documents/GitHub-259-2022/259-langbasics-importing`
+
+- Our data is in a subdirectory `/data_raw`
+
+- `dir('data_raw')` gives `vocab12.csv`, `vocab12.5.csv`...which aren't in the working directory
+
+- `dir('data_raw', full.names = TRUE)` gives the absolute path:
+
+`/Users/johnfranchak/Documents/GitHub-259-2022/259-langbasics-importing/data_raw/vocab12.csv`
+
+---
+
 # What's a tibble? 
 
 - Tibbles are the tidyverse equivalent of base R data frames. 
@@ -159,22 +175,6 @@ print(ds_all)
 - Unlike in Excel, you cannot edit the values. This is a feature, not a bug!
 
 - `ds$variable` lets you access one variable of a data set
-
----
-
-# Why did we need full.names? 
-
-- Our working directory is:
-
-`/Users/johnfranchak/Documents/GitHub-259-2022/259-langbasics-importing`
-
-- Our data is in a subdirectory `/data_raw`
-
-- `dir('data_raw')` gives `vocab12.csv`, `vocab12.5.csv`...which aren't in the working directory
-
-- `dir('data_raw', full.names = TRUE)` gives the absolute path:
-
-`/Users/johnfranchak/Documents/GitHub-259-2022/259-langbasics-importing/data_raw/vocab12.csv`
 
 ---
 
@@ -216,14 +216,14 @@ write_csv(ds_all, file = "data_cleaned/vocab_combined.csv")
 `r chunk_reveal("read_options", break_type = "rotate", float = "none", widths = c(5, 1))`
 
 ```{r read_options, include = FALSE}
-f <- "data_cleaned/vocab_combined.csv"
-n <- c("AGE", "WORD", "NAME", "MONTH")
-t <- "cccc"
-ds <- read_csv(file = f) #ROTATE
-ds <- read_csv(file = f, col_names = F) #ROTATE
-ds <- read_csv(file = f, col_names = n) #ROTATE
-ds <- read_csv(file = f, col_names = n, skip = 1) #ROTATE
-ds <- read_csv(file = f, col_names = n, col_types = t, skip = 1) #ROTATE
+fname <- "data_cleaned/vocab_combined.csv"
+colname <- c("AGE", "WORD", "NAME", "MONTH")
+coltypes <- "cccc"
+ds <- read_csv(file = fname) #ROTATE
+ds <- read_csv(file = fname, col_names = FALSE) #ROTATE
+ds <- read_csv(file = fname, col_names = colname) #ROTATE
+ds <- read_csv(file = fname, col_names = colname, skip = 1) #ROTATE
+ds <- read_csv(file = fname, col_names = colname, col_types = coltypes, skip = 1) #ROTATE
 print(ds)
 ```
 

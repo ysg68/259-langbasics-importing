@@ -455,7 +455,6 @@ var3 &lt;- var1 + var2
 
 # When assigning variables, nothing prints to the console
 # Let's use the function print
-
 *print(var3)
 ```
 ]
@@ -735,6 +734,7 @@ my_vars
 # RStudio has built-in help for every function
 ?c
 
+# Functions can also be used to import data
 *ds &lt;- read.csv('data_raw/vocab16.csv')
 ```
 ]
@@ -780,6 +780,7 @@ my_vars
 # RStudio has built-in help for every function
 ?c
 
+# Functions can also be used to import data
 ds &lt;- read.csv('data_raw/vocab16.csv')
 *print(ds)
 ```
@@ -836,12 +837,13 @@ my_vars
 # RStudio has built-in help for every function
 ?c
 
+# Functions can also be used to import data
 ds &lt;- read.csv('data_raw/vocab16.csv')
 print(ds)
 
-# Base R refers to the collection of default functions
+# read.csv is part of base R, the default fx set
 # When we want to use functions to expand R, we
-# need to use libary to load packages
+# need to use library fx to load packages
 
 *library(readr)  #for read_csv
 ```
@@ -898,12 +900,13 @@ my_vars
 # RStudio has built-in help for every function
 ?c
 
+# Functions can also be used to import data
 ds &lt;- read.csv('data_raw/vocab16.csv')
 print(ds)
 
-# Base R refers to the collection of default functions
+# read.csv is part of base R, the default fx set
 # When we want to use functions to expand R, we
-# need to use libary to load packages
+# need to use library fx to load packages
 
 library(readr)  #for read_csv
 *ds &lt;- read_csv('data_raw/vocab16.csv')
@@ -1349,6 +1352,22 @@ ds_all &lt;- read_csv(full_file_names)
 
 ---
 
+# Why did we need the full.names argument? 
+
+- Our working directory is:
+
+`/Users/johnfranchak/Documents/GitHub-259-2022/259-langbasics-importing`
+
+- Our data is in a subdirectory `/data_raw`
+
+- `dir('data_raw')` gives `vocab12.csv`, `vocab12.5.csv`...which aren't in the working directory
+
+- `dir('data_raw', full.names = TRUE)` gives the absolute path:
+
+`/Users/johnfranchak/Documents/GitHub-259-2022/259-langbasics-importing/data_raw/vocab12.csv`
+
+---
+
 # What's a tibble? 
 
 - Tibbles are the tidyverse equivalent of base R data frames. 
@@ -1362,22 +1381,6 @@ ds_all &lt;- read_csv(full_file_names)
 - Unlike in Excel, you cannot edit the values. This is a feature, not a bug!
 
 - `ds$variable` lets you access one variable of a data set
-
----
-
-# Why did we need full.names? 
-
-- Our working directory is:
-
-`/Users/johnfranchak/Documents/GitHub-259-2022/259-langbasics-importing`
-
-- Our data is in a subdirectory `/data_raw`
-
-- `dir('data_raw')` gives `vocab12.csv`, `vocab12.5.csv`...which aren't in the working directory
-
-- `dir('data_raw', full.names = TRUE)` gives the absolute path:
-
-`/Users/johnfranchak/Documents/GitHub-259-2022/259-langbasics-importing/data_raw/vocab12.csv`
 
 ---
 
@@ -1731,10 +1734,10 @@ count: false
 .panel1-read_options-rotate[
 
 ```r
-f &lt;- "data_cleaned/vocab_combined.csv"
-n &lt;- c("AGE", "WORD", "NAME", "MONTH")
-t &lt;- "cccc"
-*ds &lt;- read_csv(file = f)
+fname &lt;- "data_cleaned/vocab_combined.csv"
+colname &lt;- c("AGE", "WORD", "NAME", "MONTH")
+coltypes &lt;- "cccc"
+*ds &lt;- read_csv(file = fname)
 print(ds)
 ```
 ]
@@ -1766,10 +1769,10 @@ count: false
 .panel1-read_options-rotate[
 
 ```r
-f &lt;- "data_cleaned/vocab_combined.csv"
-n &lt;- c("AGE", "WORD", "NAME", "MONTH")
-t &lt;- "cccc"
-*ds &lt;- read_csv(file = f, col_names = F)
+fname &lt;- "data_cleaned/vocab_combined.csv"
+colname &lt;- c("AGE", "WORD", "NAME", "MONTH")
+coltypes &lt;- "cccc"
+*ds &lt;- read_csv(file = fname, col_names = FALSE)
 print(ds)
 ```
 ]
@@ -1801,10 +1804,10 @@ count: false
 .panel1-read_options-rotate[
 
 ```r
-f &lt;- "data_cleaned/vocab_combined.csv"
-n &lt;- c("AGE", "WORD", "NAME", "MONTH")
-t &lt;- "cccc"
-*ds &lt;- read_csv(file = f, col_names = n)
+fname &lt;- "data_cleaned/vocab_combined.csv"
+colname &lt;- c("AGE", "WORD", "NAME", "MONTH")
+coltypes &lt;- "cccc"
+*ds &lt;- read_csv(file = fname, col_names = colname)
 print(ds)
 ```
 ]
@@ -1836,10 +1839,10 @@ count: false
 .panel1-read_options-rotate[
 
 ```r
-f &lt;- "data_cleaned/vocab_combined.csv"
-n &lt;- c("AGE", "WORD", "NAME", "MONTH")
-t &lt;- "cccc"
-*ds &lt;- read_csv(file = f, col_names = n, skip = 1)
+fname &lt;- "data_cleaned/vocab_combined.csv"
+colname &lt;- c("AGE", "WORD", "NAME", "MONTH")
+coltypes &lt;- "cccc"
+*ds &lt;- read_csv(file = fname, col_names = colname, skip = 1)
 print(ds)
 ```
 ]
@@ -1871,10 +1874,10 @@ count: false
 .panel1-read_options-rotate[
 
 ```r
-f &lt;- "data_cleaned/vocab_combined.csv"
-n &lt;- c("AGE", "WORD", "NAME", "MONTH")
-t &lt;- "cccc"
-*ds &lt;- read_csv(file = f, col_names = n, col_types = t, skip = 1)
+fname &lt;- "data_cleaned/vocab_combined.csv"
+colname &lt;- c("AGE", "WORD", "NAME", "MONTH")
+coltypes &lt;- "cccc"
+*ds &lt;- read_csv(file = fname, col_names = colname, col_types = coltypes, skip = 1)
 print(ds)
 ```
 ]
