@@ -14,6 +14,7 @@ output:
 ---
 
 ```{r xaringan-themer, include=FALSE, warning=FALSE}
+# Set up custom theme
 library(xaringanthemer)
 style_mono_accent(
   base_color = "#1c5253",
@@ -27,6 +28,7 @@ style_mono_accent(
   header_h3_font_size = "2rem",
 )
 ```
+
 ```{r, include = F}
 # This is the recommended set up for flipbooks
 # you might think about setting cache to TRUE as you gain practice --- building flipbooks from scratch can be time consuming
@@ -230,14 +232,14 @@ print(ds)
 ---
 # More options
 
-- tidyverse data import cheatsheet
+- tidyverse data import "cheatsheets"
 
-- ?read_csv, ?write_csv
+- `?read_csv`, `?write_csv`
 
 - specialized import packages
-  * haven for SPSS/Stata/SAS
-  * readxl for .xlsx
-  * googlesheets4 for Google sheets
+  * `haven` for SPSS/Stata/SAS
+  * `readxl` for .xlsx
+  * `googlesheets4` for Google sheets
 
 ---
 class: center, middle
