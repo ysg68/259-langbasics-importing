@@ -165,7 +165,7 @@ print(ds_all)
 ```
 
 ---
-# But imagine having to read in every file in the list
+# But imagine having to read in every file in the list with separate read_csv commands...
 
 .scroll-box-16[
 ```{r R.options = list(width = 75)}
@@ -265,7 +265,7 @@ ds <- read_csv(file = fname) #ROTATE
 ds <- read_csv(file = fname, col_names = FALSE) #ROTATE
 ds <- read_csv(file = fname, col_names = colname) #ROTATE
 ds <- read_csv(file = fname, col_names = colname, skip = 1) #ROTATE
-ds <- read_csv(file = fname, col_names = colname, col_types = coltypes, skip = 1) #ROTATE
+ds <- read_csv(file = fname, col_names = colname, skip = 1, col_types = coltypes) #ROTATE
 print(ds)
 ```
 
