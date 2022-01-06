@@ -128,6 +128,7 @@ ds <- read_csv('data_raw/vocab16.csv')
 
 # read_csv versus read.csv 
 
+.pull-left[
 - read.csv is base R, read_csv is tidyverse
 
 - read_csv is faster
@@ -135,24 +136,45 @@ ds <- read_csv('data_raw/vocab16.csv')
 - read_csv makes fewer assumptions about your data
 
 - read_csv can combine multiple data files into one
+]
+
+.pull-right[
+![an image](dir.png)
+]
+---
+
+`r chunk_reveal("import_sequential", break_type = "auto", widths = c(2, 1))`
+
+```{r import_sequential, include = FALSE}
+# We can use read_csv to read individual files
+ds12 <- read_csv('data_raw/vocab12.csv')
+print(ds12)
+
+ds12.5 <- read_csv('data_raw/vocab12.5.csv')
+print(ds12.5)
+
+ds13.5 <- read_csv('data_raw/vocab13.5.csv')
+print(ds13)
+
+# bind_rows can append datasets together
+ds_all <- bind_rows(ds12, ds12.5, ds13.5)
+print(ds_all)
+```
+
+---
+# But imagine having to read in every file in the list
+
+```{r R.options = list(width = 75)}
+list.files('data_raw', full.names = TRUE) #function for listing files a directory
+```
 
 ---
 
-`r chunk_reveal("import_multiple", break_type = "auto", widths = c(1.5, 1))`
+`r chunk_reveal("import_multiple", break_type = "auto", float = "none", widths = c(5, 1))`
 
 ```{r import_multiple, include = FALSE}
-# Each file contains data for 2-week intervals
-dir('data_raw') #function for listing a directory
-
-# This is slow and tedious!
-ds12 <- read_csv('data_raw/vocab12.csv')
-ds12.5 <- read_csv('data_raw/vocab12.5.csv')
-ds13.5 <- read_csv('data_raw/vocab13.5.csv')
-ds_all <- bind_rows(ds12, ds12.5, ds13.5)
-print(ds_all)
-
 # read_csv can read a list of files!
-full_file_names <- dir('data_raw', full.names = TRUE)
+full_file_names <- list.files('data_raw', full.names = TRUE)
 ds_all <- read_csv(full_file_names)
 print(ds_all)
 ```
@@ -171,11 +193,11 @@ print(ds_all)
 
 # Why did we need full.names? 
 .pull-left[
-- `dir('data_raw')` gives `vocab12.csv`, `vocab12.5.csv`...which aren't in the working directory
+- `list.files('data_raw')` gives `vocab12.csv`, `vocab12.5.csv`...which aren't in the working directory
 
-- `dir('data_raw', full.names = TRUE)` gives the absolute path:
+- `list.files('data_raw', full.names = TRUE)` gives the relative path including the directory:
 
-`/Users/johnfranchak/Documents/GitHub-259-2022/259-langbasics-importing/data_raw/vocab12.csv`
+`/data_raw/vocab12.csv`, `/data_raw/vocab12.5.csv`
 ]
 
 .pull-right[
