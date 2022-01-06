@@ -1000,6 +1000,7 @@ library(readr)  #for read_csv
 ]
 
 .pull-right[
+The following examples use .csv (comma separated value) files in the data_raw directory
 ![an image](dir.png)
 ]
 ---
@@ -1158,8 +1159,54 @@ ds12.5 &lt;- read_csv('data_raw/vocab12.5.csv')
 print(ds12.5)
 
 ds13.5 &lt;- read_csv('data_raw/vocab13.5.csv')
+*print(ds13.5)
+```
+]
+ 
+.panel2-import_sequential-auto[
 
-# bind_rows can append datasets together
+```
+# A tibble: 3 × 2
+    age word   
+  &lt;dbl&gt; &lt;chr&gt;  
+1    12 book   
+2    12 ball   
+3    12 bye bye
+```
+
+```
+# A tibble: 1 × 2
+    age word 
+  &lt;dbl&gt; &lt;chr&gt;
+1  12.5 dad  
+```
+
+```
+# A tibble: 1 × 2
+    age word 
+  &lt;dbl&gt; &lt;chr&gt;
+1  13.5 cat  
+```
+]
+
+---
+count: false
+ 
+
+.panel1-import_sequential-auto[
+
+```r
+# We can use read_csv to read individual files
+ds12 &lt;- read_csv('data_raw/vocab12.csv')
+print(ds12)
+
+ds12.5 &lt;- read_csv('data_raw/vocab12.5.csv')
+print(ds12.5)
+
+ds13.5 &lt;- read_csv('data_raw/vocab13.5.csv')
+print(ds13.5)
+
+# bind_rows can append tibbles together
 *ds_all &lt;- bind_rows(ds12, ds12.5, ds13.5)
 ```
 ]
@@ -1181,6 +1228,13 @@ ds13.5 &lt;- read_csv('data_raw/vocab13.5.csv')
   &lt;dbl&gt; &lt;chr&gt;
 1  12.5 dad  
 ```
+
+```
+# A tibble: 1 × 2
+    age word 
+  &lt;dbl&gt; &lt;chr&gt;
+1  13.5 cat  
+```
 ]
 
 ---
@@ -1198,8 +1252,9 @@ ds12.5 &lt;- read_csv('data_raw/vocab12.5.csv')
 print(ds12.5)
 
 ds13.5 &lt;- read_csv('data_raw/vocab13.5.csv')
+print(ds13.5)
 
-# bind_rows can append datasets together
+# bind_rows can append tibbles together
 ds_all &lt;- bind_rows(ds12, ds12.5, ds13.5)
 *print(ds_all)
 ```
@@ -1221,6 +1276,13 @@ ds_all &lt;- bind_rows(ds12, ds12.5, ds13.5)
     age word 
   &lt;dbl&gt; &lt;chr&gt;
 1  12.5 dad  
+```
+
+```
+# A tibble: 1 × 2
+    age word 
+  &lt;dbl&gt; &lt;chr&gt;
+1  13.5 cat  
 ```
 
 ```
@@ -1269,10 +1331,11 @@ ds_all &lt;- bind_rows(ds12, ds12.5, ds13.5)
 ---
 # But imagine having to read in every file in the list
 
+.scroll-box-16[
 
 ```r
-options(width = 75)
-list.files('data_raw', full.names = TRUE) #function for listing files a directory
+#function for listing files a directory
+list.files('data_raw', full.names = TRUE) 
 ```
 
 ```
@@ -1289,7 +1352,7 @@ list.files('data_raw', full.names = TRUE) #function for listing files a director
 [21] "data_raw/vocab22.csv"   "data_raw/vocab23.5.csv"
 [23] "data_raw/vocab23.csv"   "data_raw/vocab24.csv"  
 ```
-
+]
 ---
 
 count: false
@@ -1299,6 +1362,8 @@ count: false
 
 ```r
 # read_csv can read a list of files!
+
+# Make a variable containing the list of data files
 *full_file_names &lt;- list.files('data_raw', full.names = TRUE)
 ```
 ]
@@ -1315,7 +1380,11 @@ count: false
 
 ```r
 # read_csv can read a list of files!
+
+# Make a variable containing the list of data files
 full_file_names &lt;- list.files('data_raw', full.names = TRUE)
+
+# Pass the list to read_csv to read all of them into a single tibble
 *ds_all &lt;- read_csv(full_file_names)
 ```
 ]
@@ -1332,7 +1401,11 @@ count: false
 
 ```r
 # read_csv can read a list of files!
+
+# Make a variable containing the list of data files
 full_file_names &lt;- list.files('data_raw', full.names = TRUE)
+
+# Pass the list to read_csv to read all of them into a single tibble
 ds_all &lt;- read_csv(full_file_names)
 *print(ds_all)
 ```
@@ -1393,12 +1466,17 @@ ds_all &lt;- read_csv(full_file_names)
 # Why did we need full.names? 
 --
 
+.pull-left[
 - Our working directory is:
 
 `/Users/johnfranchak/Documents/GitHub-259-2022/259-langbasics-importing`
 
 - Our data is in a subdirectory `/data_raw`
+]
 
+.pull-right[
+![an image](dir.png)
+]
 ---
 
 # Why did we need full.names? 
@@ -1513,52 +1591,6 @@ max(ds_all$age)
 
 # Create a new column in a dataset
 ds_all$ppt_name &lt;- "Jonah"
-*print(ds_all)
-```
-]
- 
-.panel2-tibble-auto[
-
-```
-[1] 12
-```
-
-```
-[1] 24
-```
-
-```
-# A tibble: 440 × 3
-     age word         ppt_name
-   &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;   
- 1  12.5 dad          Jonah   
- 2  12   book         Jonah   
- 3  12   ball         Jonah   
- 4  12   bye bye      Jonah   
- 5  13.5 cat          Jonah   
- 6  14.5 socks/shoes  Jonah   
- 7  14.5 dog (animal) Jonah   
- 8  14   baby         Jonah   
- 9  15.5 cheese       Jonah   
-10  15.5 turkey       Jonah   
-# … with 430 more rows
-```
-]
-
----
-count: false
- 
-
-.panel1-tibble-auto[
-
-```r
-# Find the minimum and maximum ages
-min(ds_all$age)
-max(ds_all$age)
-
-# Create a new column in a dataset
-ds_all$ppt_name &lt;- "Jonah"
-print(ds_all)
 
 # Create a calculated column
 *ds_all$age_round &lt;- round(ds_all$age)
@@ -1574,23 +1606,6 @@ print(ds_all)
 ```
 [1] 24
 ```
-
-```
-# A tibble: 440 × 3
-     age word         ppt_name
-   &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;   
- 1  12.5 dad          Jonah   
- 2  12   book         Jonah   
- 3  12   ball         Jonah   
- 4  12   bye bye      Jonah   
- 5  13.5 cat          Jonah   
- 6  14.5 socks/shoes  Jonah   
- 7  14.5 dog (animal) Jonah   
- 8  14   baby         Jonah   
- 9  15.5 cheese       Jonah   
-10  15.5 turkey       Jonah   
-# … with 430 more rows
-```
 ]
 
 ---
@@ -1606,10 +1621,11 @@ max(ds_all$age)
 
 # Create a new column in a dataset
 ds_all$ppt_name &lt;- "Jonah"
-print(ds_all)
 
 # Create a calculated column
 ds_all$age_round &lt;- round(ds_all$age)
+
+# See the results
 *print(ds_all)
 ```
 ]
@@ -1640,23 +1656,6 @@ ds_all$age_round &lt;- round(ds_all$age)
 10  15.5 turkey       Jonah           16
 # … with 430 more rows
 ```
-
-```
-# A tibble: 440 × 4
-     age word         ppt_name age_round
-   &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;        &lt;dbl&gt;
- 1  12.5 dad          Jonah           12
- 2  12   book         Jonah           12
- 3  12   ball         Jonah           12
- 4  12   bye bye      Jonah           12
- 5  13.5 cat          Jonah           14
- 6  14.5 socks/shoes  Jonah           14
- 7  14.5 dog (animal) Jonah           14
- 8  14   baby         Jonah           14
- 9  15.5 cheese       Jonah           16
-10  15.5 turkey       Jonah           16
-# … with 430 more rows
-```
 ]
 
 ---
@@ -1672,10 +1671,11 @@ max(ds_all$age)
 
 # Create a new column in a dataset
 ds_all$ppt_name &lt;- "Jonah"
-print(ds_all)
 
 # Create a calculated column
 ds_all$age_round &lt;- round(ds_all$age)
+
+# See the results
 print(ds_all)
 
 # Let's write the combined data to disk
@@ -1691,23 +1691,6 @@ print(ds_all)
 
 ```
 [1] 24
-```
-
-```
-# A tibble: 440 × 4
-     age word         ppt_name age_round
-   &lt;dbl&gt; &lt;chr&gt;        &lt;chr&gt;        &lt;dbl&gt;
- 1  12.5 dad          Jonah           12
- 2  12   book         Jonah           12
- 3  12   ball         Jonah           12
- 4  12   bye bye      Jonah           12
- 5  13.5 cat          Jonah           14
- 6  14.5 socks/shoes  Jonah           14
- 7  14.5 dog (animal) Jonah           14
- 8  14   baby         Jonah           14
- 9  15.5 cheese       Jonah           16
-10  15.5 turkey       Jonah           16
-# … with 430 more rows
 ```
 
 ```
@@ -1985,7 +1968,7 @@ print(ds)
 
 - tidyverse data import "cheatsheets"
 
-- `?read_csv`, `?write_csv`
+- Read the documentation: `?read_csv`, `?write_csv`
 
 - specialized import packages
   * `haven` for SPSS/Stata/SAS
@@ -2159,7 +2142,10 @@ code.r.hljs.remark-code{
 "ratio": "16:9",
 "highlightStyle": "github",
 "highlightLines": true,
-"countIncrementalSlides": false
+"countIncrementalSlides": false,
+"navigation": {
+"scroll": false
+}
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

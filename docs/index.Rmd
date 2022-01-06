@@ -11,6 +11,8 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
+      navigation:
+        scroll: false
 ---
 ```{r xaringanExtra, echo=FALSE}
 xaringanExtra::use_xaringan_extra(c("tile_view","broadcast"))
@@ -59,7 +61,7 @@ library(icons) #https://fontawesome.com/v5.15/icons?d=gallery&p=2&m=free
 `r icons::fontawesome("github")` Follow along from the [Github repo](https://github.com/psych-259-data-science-2022/259-langbasics-importing)
 ]
 
-  .footnote[.red.bold[*] Last updated: `r Sys.Date()`]
+  .footnote[.bold[Last updated: `r Sys.Date()`]]
 ---
 
 `r chunk_reveal("calc_vs_assign", break_type = "auto", widths = c(4, 1))`
@@ -139,6 +141,7 @@ ds <- read_csv('data_raw/vocab16.csv')
 ]
 
 .pull-right[
+The following examples use .csv (comma separated value) files in the data_raw directory
 ![an image](dir.png)
 ]
 ---
@@ -154,9 +157,9 @@ ds12.5 <- read_csv('data_raw/vocab12.5.csv')
 print(ds12.5)
 
 ds13.5 <- read_csv('data_raw/vocab13.5.csv')
-print(ds13)
+print(ds13.5)
 
-# bind_rows can append datasets together
+# bind_rows can append tibbles together
 ds_all <- bind_rows(ds12, ds12.5, ds13.5)
 print(ds_all)
 ```
@@ -164,31 +167,26 @@ print(ds_all)
 ---
 # But imagine having to read in every file in the list
 
+.scroll-box-16[
 ```{r R.options = list(width = 75)}
-list.files('data_raw', full.names = TRUE) #function for listing files a directory
+#function for listing files a directory
+list.files('data_raw', full.names = TRUE) 
 ```
-
+]
 ---
 
 `r chunk_reveal("import_multiple", break_type = "auto", float = "none", widths = c(5, 1))`
 
 ```{r import_multiple, include = FALSE}
 # read_csv can read a list of files!
+
+# Make a variable containing the list of data files
 full_file_names <- list.files('data_raw', full.names = TRUE)
+
+# Pass the list to read_csv to read all of them into a single tibble
 ds_all <- read_csv(full_file_names)
 print(ds_all)
 ```
----
-
-# Why did we need full.names? 
---
-
-- Our working directory is:
-
-`/Users/johnfranchak/Documents/GitHub-259-2022/259-langbasics-importing`
-
-- Our data is in a subdirectory `/data_raw`
-
 ---
 
 # Why did we need full.names? 
@@ -230,10 +228,11 @@ max(ds_all$age)
 
 # Create a new column in a dataset
 ds_all$ppt_name <- "Jonah"
-print(ds_all)
 
 # Create a calculated column
 ds_all$age_round <- round(ds_all$age)
+
+# See the results
 print(ds_all)
 
 # Let's write the combined data to disk
@@ -275,7 +274,7 @@ print(ds)
 
 - tidyverse data import "cheatsheets"
 
-- `?read_csv`, `?write_csv`
+- Read the documentation: `?read_csv`, `?write_csv`
 
 - specialized import packages
   * `haven` for SPSS/Stata/SAS
