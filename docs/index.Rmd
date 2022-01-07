@@ -61,7 +61,7 @@ library(icons) #https://fontawesome.com/v5.15/icons?d=gallery&p=2&m=free
 `r icons::fontawesome("github")` Follow along from the [Github repo](https://github.com/psych-259-data-science-2022/259-langbasics-importing)
 ]
 
-  .footnote[.bold[Last updated: `r Sys.Date()`]]
+.footnote[.small[.bold[Last updated: `r Sys.Date()`]]]
 ---
 
 `r chunk_reveal("calc_vs_assign", break_type = "auto", widths = c(4, 1))`
