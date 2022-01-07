@@ -291,6 +291,21 @@ class: center, middle
 background-image: url("readr-cheatsheet2.png")
 background-size: contain
 
+---
+# Data import homework assignment
+
+- Use the GitHub repo link below to clone the project (no need to fork) to your own user account and then to work locally on your own computer.
+
+- Be sure you are using R version >= 4.0 and readr version >= 2.0
+
+- The homework will make sure you learned what we covered, and will also ask you to try out new things to extend your knowledge
+
+- Push your answers to a public Github repo, and turn in the homework by entering the link to the repo on Canvas
+
+.content-box-blue[
+`r icons::fontawesome("github")` Homework [Github repo](https://github.com/psych-259-data-science-2022/259-langbasics-importing-hw)
+]
+
 <!-- adjust font size in this css code chunk, currently 80 -->
 
 ```{css, eval = TRUE, echo = FALSE}
