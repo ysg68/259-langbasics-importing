@@ -105,4 +105,3 @@ ds <- read_csv(file = fname, col_names = FALSE)
 ds <- read_csv(file = fname, col_names = colname) 
 ds <- read_csv(file = fname, col_names = colname, skip = 1) 
 ds <- read_csv(file = fname, col_names = colname, col_types = coltypes, skip = 1) 
-
